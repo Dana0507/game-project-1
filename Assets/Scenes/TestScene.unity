@@ -337,7 +337,7 @@ Transform:
   m_GameObject: {fileID: 111691115}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.12, y: 0.71, z: 0}
+  m_LocalPosition: {x: 0.24, y: -0.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -561,9 +561,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: b02df46d2c4a44dd0bf0be176e5ec527, type: 2}
   bluePotionPrefab: {fileID: 0}
-  redPotionPrefab: {fileID: 0}
+  redPotionPrefab: {fileID: 3989311772263277570, guid: 09f937008ce114a5b81f88bb59b1cfce, type: 3}
   groundWallCheck: {fileID: 0}
-  enemyType: 0
+  enemyType: 1
 --- !u!1 &365734812
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,7 +589,7 @@ Transform:
   m_GameObject: {fileID: 365734812}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.12, y: 0.71, z: 0}
+  m_LocalPosition: {x: -0.56, y: 0.74, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -620,7 +620,7 @@ Transform:
   m_GameObject: {fileID: 392591207}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.12, y: 0.71, z: 0}
+  m_LocalPosition: {x: -0.68, y: 0.78, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -651,7 +651,7 @@ Transform:
   m_GameObject: {fileID: 472322298}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.12, y: 0.71, z: 0}
+  m_LocalPosition: {x: 0.236, y: -0.118, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -701,8 +701,6 @@ GameObject:
   - component: {fileID: 659511457}
   - component: {fileID: 659511456}
   - component: {fileID: 659511455}
-  - component: {fileID: 659511454}
-  - component: {fileID: 659511453}
   - component: {fileID: 659511452}
   - component: {fileID: 659511460}
   m_Layer: 0
@@ -808,64 +806,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &659511453
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 659511451}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb0a856b001c9a9459d74d0adb1c6e5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpPower: 13
-  maxJumpCount: 2
-  jumpCooldown: 0.1
-  fallMultiplier: 2.7
-  lowJumpMultiplier: 3
-  coyoteTime: 0.2
-  jumpBufferTime: 0.2
-  hangTimeDuration: 0.15
-  hangTimeVelocityThreshold: 1
-  jumpHoldThreshold: 0.15
---- !u!114 &659511454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 659511451}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2e5886210bbd9e4f9bd252912555ba2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 6
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  groundCheck: {fileID: 2106091140}
-  groundCheckRadius: 0.2
-  isGrounded: 0
-  footstepsSfx:
-  - {fileID: 8300000, guid: 551d550ab98e3cc4bb7793e752fe8628, type: 3}
-  - {fileID: 8300000, guid: 18e761ff5ef14fd4588d9283fcc9b829, type: 3}
-  - {fileID: 8300000, guid: 9c0c1f9411026f749bcb3746cd557bec, type: 3}
-  - {fileID: 8300000, guid: 38cb68a2a49e89c46bea091d75b27976, type: 3}
-  - {fileID: 8300000, guid: a62172e6f7275ff4f94c17edc8dfdd0d, type: 3}
-  - {fileID: 8300000, guid: 6a0b4267ac8ee8448b619bc9a3bca6d9, type: 3}
-  - {fileID: 8300000, guid: fc32c6fd07980144996b811e5d1f2971, type: 3}
-  - {fileID: 8300000, guid: 030e6a43a7d08bd4581668d53a9808f4, type: 3}
-  - {fileID: 8300000, guid: 56ea356e65429294f9098ef523fdb70b, type: 3}
-  maxHealth: 5
-  attackBox: {fileID: 365734813}
-  attackSize: {x: 3.5, y: 1.3}
-  damageableLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  baseAttackDamage: 1
 --- !u!70 &659511455
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1032,9 +972,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 8b6c5e3a0cd6b4fc68436b8946fffb48, type: 2}
   bluePotionPrefab: {fileID: 0}
-  redPotionPrefab: {fileID: 0}
+  redPotionPrefab: {fileID: 3989311772263277570, guid: 09f937008ce114a5b81f88bb59b1cfce, type: 3}
   groundWallCheck: {fileID: 0}
-  enemyType: 0
+  enemyType: 2
 --- !u!1 &704303383
 GameObject:
   m_ObjectHideFlags: 0
@@ -1048,8 +988,6 @@ GameObject:
   - component: {fileID: 704303390}
   - component: {fileID: 704303389}
   - component: {fileID: 704303388}
-  - component: {fileID: 704303387}
-  - component: {fileID: 704303386}
   - component: {fileID: 704303385}
   - component: {fileID: 704303384}
   m_Layer: 0
@@ -1072,10 +1010,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 28c27c52f05c64ebba712858b4020a8a, type: 2}
-  bluePotionPrefab: {fileID: 0}
+  bluePotionPrefab: {fileID: 3787353249468676850, guid: 1066ca8e3540441ae95b5e4032b28754, type: 3}
   redPotionPrefab: {fileID: 0}
   groundWallCheck: {fileID: 0}
-  enemyType: 0
+  enemyType: 1
 --- !u!82 &704303385
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1172,64 +1110,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &704303386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 704303383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb0a856b001c9a9459d74d0adb1c6e5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpPower: 13
-  maxJumpCount: 2
-  jumpCooldown: 0.1
-  fallMultiplier: 2.7
-  lowJumpMultiplier: 3
-  coyoteTime: 0.2
-  jumpBufferTime: 0.2
-  hangTimeDuration: 0.15
-  hangTimeVelocityThreshold: 1
-  jumpHoldThreshold: 0.15
---- !u!114 &704303387
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 704303383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2e5886210bbd9e4f9bd252912555ba2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 6
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  groundCheck: {fileID: 1520175877}
-  groundCheckRadius: 0.2
-  isGrounded: 0
-  footstepsSfx:
-  - {fileID: 8300000, guid: 551d550ab98e3cc4bb7793e752fe8628, type: 3}
-  - {fileID: 8300000, guid: 18e761ff5ef14fd4588d9283fcc9b829, type: 3}
-  - {fileID: 8300000, guid: 9c0c1f9411026f749bcb3746cd557bec, type: 3}
-  - {fileID: 8300000, guid: 38cb68a2a49e89c46bea091d75b27976, type: 3}
-  - {fileID: 8300000, guid: a62172e6f7275ff4f94c17edc8dfdd0d, type: 3}
-  - {fileID: 8300000, guid: 6a0b4267ac8ee8448b619bc9a3bca6d9, type: 3}
-  - {fileID: 8300000, guid: fc32c6fd07980144996b811e5d1f2971, type: 3}
-  - {fileID: 8300000, guid: 030e6a43a7d08bd4581668d53a9808f4, type: 3}
-  - {fileID: 8300000, guid: 56ea356e65429294f9098ef523fdb70b, type: 3}
-  maxHealth: 5
-  attackBox: {fileID: 392591208}
-  attackSize: {x: 3.5, y: 1.3}
-  damageableLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  baseAttackDamage: 1
 --- !u!70 &704303388
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1374,7 +1254,7 @@ Transform:
   m_GameObject: {fileID: 704303383}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.95, y: -2.88, z: 0}
+  m_LocalPosition: {x: 9.23, y: -2.72, z: 0}
   m_LocalScale: {x: 2.5, y: 2.49625, z: 2.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1694,7 +1574,7 @@ Transform:
   m_GameObject: {fileID: 889488727}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.12, y: 0.71, z: 0}
+  m_LocalPosition: {x: 0.29, y: -0.22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1787,7 +1667,7 @@ Transform:
   m_GameObject: {fileID: 1605825346}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.12, y: 0.71, z: 0}
+  m_LocalPosition: {x: -0.62, y: 0.71, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2102,10 +1982,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 4751c66ca0e5541f9acbf396345e8175, type: 2}
-  bluePotionPrefab: {fileID: 0}
+  bluePotionPrefab: {fileID: 3787353249468676850, guid: 1066ca8e3540441ae95b5e4032b28754, type: 3}
   redPotionPrefab: {fileID: 0}
   groundWallCheck: {fileID: 0}
-  enemyType: 0
+  enemyType: 2
 --- !u!1 &2106091140
 GameObject:
   m_ObjectHideFlags: 0
