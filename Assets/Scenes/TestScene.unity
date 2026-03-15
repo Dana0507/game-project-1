@@ -310,6 +310,7 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: bd80001fb7b9c4d8db39a9723e810d87, type: 2}
   bluePotionPrefab: {fileID: 0}
   redPotionPrefab: {fileID: 0}
+  deathParticles: {fileID: 7603989792395805922, guid: d10f82b0c5928444f88d3164b2e78ada, type: 3}
   groundWallCheck: {fileID: 0}
   enemyType: 0
 --- !u!1 &111691115
@@ -562,6 +563,7 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: b02df46d2c4a44dd0bf0be176e5ec527, type: 2}
   bluePotionPrefab: {fileID: 0}
   redPotionPrefab: {fileID: 3989311772263277570, guid: 09f937008ce114a5b81f88bb59b1cfce, type: 3}
+  deathParticles: {fileID: 7603989792395805922, guid: d10f82b0c5928444f88d3164b2e78ada, type: 3}
   groundWallCheck: {fileID: 0}
   enemyType: 1
 --- !u!1 &365734812
@@ -973,6 +975,7 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: 8b6c5e3a0cd6b4fc68436b8946fffb48, type: 2}
   bluePotionPrefab: {fileID: 0}
   redPotionPrefab: {fileID: 3989311772263277570, guid: 09f937008ce114a5b81f88bb59b1cfce, type: 3}
+  deathParticles: {fileID: 7603989792395805922, guid: d10f82b0c5928444f88d3164b2e78ada, type: 3}
   groundWallCheck: {fileID: 0}
   enemyType: 2
 --- !u!1 &704303383
@@ -1012,6 +1015,7 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: 28c27c52f05c64ebba712858b4020a8a, type: 2}
   bluePotionPrefab: {fileID: 3787353249468676850, guid: 1066ca8e3540441ae95b5e4032b28754, type: 3}
   redPotionPrefab: {fileID: 0}
+  deathParticles: {fileID: 7603989792395805922, guid: d10f82b0c5928444f88d3164b2e78ada, type: 3}
   groundWallCheck: {fileID: 0}
   enemyType: 1
 --- !u!82 &704303385
@@ -1547,6 +1551,7 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: 4cbb18125c21f4d128a26f0df2d96055, type: 2}
   bluePotionPrefab: {fileID: 0}
   redPotionPrefab: {fileID: 0}
+  deathParticles: {fileID: 7603989792395805922, guid: d10f82b0c5928444f88d3164b2e78ada, type: 3}
   groundWallCheck: {fileID: 0}
   enemyType: 0
 --- !u!1 &889488727
@@ -1984,6 +1989,7 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: 4751c66ca0e5541f9acbf396345e8175, type: 2}
   bluePotionPrefab: {fileID: 3787353249468676850, guid: 1066ca8e3540441ae95b5e4032b28754, type: 3}
   redPotionPrefab: {fileID: 0}
+  deathParticles: {fileID: 7603989792395805922, guid: d10f82b0c5928444f88d3164b2e78ada, type: 3}
   groundWallCheck: {fileID: 0}
   enemyType: 2
 --- !u!1 &2106091140

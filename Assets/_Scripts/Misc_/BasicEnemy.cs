@@ -10,7 +10,7 @@ namespace _Scripts.Misc_
         [SerializeField] private EnemyData enemyData;
         [SerializeField] private GameObject bluePotionPrefab;
         [SerializeField] private GameObject redPotionPrefab;
-        
+        [SerializeField] private ParticleSystem deathParticles;
         private int _currHealth;
         private bool _isDead;
         [SerializeField] private Transform groundWallCheck;
@@ -110,7 +110,12 @@ namespace _Scripts.Misc_
             _anim.SetTrigger(Death);
             _rb.bodyType = RigidbodyType2D.Static; // Set enemy rigidbody to static so it doesn't get pushed by player
             _collider.isTrigger = true; // set enemy's collider to a trigger, allowing player to walk over the dead body
+            if (deathParticles != null)
+            {
+                Instantiate(deathParticles, transform.position, Quaternion.identity);
+            }
             SpawnPotion();
+            Destroy(gameObject, 1f);
         }
         
         private void SpawnPotion()
