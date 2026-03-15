@@ -8,10 +8,15 @@ namespace _Scripts.Misc_
     public class BasicEnemy : MonoBehaviour, IDamageable
     {
         [SerializeField] private EnemyData enemyData;
+        [SerializeField] private GameObject bluePotionPrefab;
+        [SerializeField] private GameObject redPotionPrefab;
+        
         private int _currHealth;
         private bool _isDead;
         [SerializeField] private Transform groundWallCheck;
         private bool _isFacingRight;
+        public EnemyType enemyType;
+
 
         #region Components
 
@@ -105,6 +110,21 @@ namespace _Scripts.Misc_
             _anim.SetTrigger(Death);
             _rb.bodyType = RigidbodyType2D.Static; // Set enemy rigidbody to static so it doesn't get pushed by player
             _collider.isTrigger = true; // set enemy's collider to a trigger, allowing player to walk over the dead body
+            SpawnPotion();
+        }
+        
+        private void SpawnPotion()
+        {
+            switch(enemyData.enemyType)
+            {
+                case EnemyType.Tank:
+                    Instantiate(bluePotionPrefab, transform.position + Vector3.up * 0.5f, Quaternion.identity);
+                    break;
+
+                case EnemyType.Fast:
+                    Instantiate(redPotionPrefab, transform.position + Vector3.up * 0.5f, Quaternion.identity);
+                    break;
+            }
         }
 
         private void OnCollisionEnter2D(Collision2D other)
