@@ -20,5 +20,4 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
-  isStrongEnemy: 0
-  isFastEnemy: 0
+  enemyType: 0
