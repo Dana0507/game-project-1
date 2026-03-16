@@ -69,6 +69,7 @@ namespace _Scripts.Misc_
 
         #endregion
 
+        // flip logic
         private void FlipCharacter()
         {
             _isFacingRight = !_isFacingRight;
@@ -112,10 +113,10 @@ namespace _Scripts.Misc_
             _collider.isTrigger = true; // set enemy's collider to a trigger, allowing player to walk over the dead body
             if (deathParticles != null)
             {
-                Instantiate(deathParticles, transform.position, Quaternion.identity);
+                Instantiate(deathParticles, transform.position, Quaternion.identity); // smoke particle system
             }
-            SpawnPotion();
-            Destroy(gameObject, 1f);
+            SpawnPotion(); // potion spawned
+            Destroy(gameObject, 1f); // enemy's body is destroyed
         }
         
         private void SpawnPotion()
@@ -123,11 +124,11 @@ namespace _Scripts.Misc_
             switch(enemyData.enemyType)
             {
                 case EnemyType.Tank:
-                    Instantiate(bluePotionPrefab, transform.position + Vector3.up * 0.5f, Quaternion.identity);
+                    Instantiate(bluePotionPrefab, transform.position + Vector3.up * 0.5f, Quaternion.identity); // blue potion is spawned if enemy is tanked
                     break;
 
                 case EnemyType.Fast:
-                    Instantiate(redPotionPrefab, transform.position + Vector3.up * 0.5f, Quaternion.identity);
+                    Instantiate(redPotionPrefab, transform.position + Vector3.up * 0.5f, Quaternion.identity); // red potion is spawned if enemy is fast
                     break;
             }
         }
