@@ -1,8 +1,6 @@
 # KnightGate
 
 ## CSC 458 – Game Programming  
-**Department of Computer Science and Mathematics**  
-**School of Arts and Sciences**  
 
 **Project 1**
 
@@ -14,8 +12,6 @@
 - **Nour Al Houda Al Omari** – 202304985  
 - **Dana Itani** – 202303432  
 - **Dalaa Hammoud** – 202302529  
-
-**Date:** March 17, 2026
 
 ---
 
