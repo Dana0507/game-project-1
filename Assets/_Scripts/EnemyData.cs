@@ -19,6 +19,10 @@ namespace _Scripts
         public float wallDetectionDistance;
         public LayerMask groundLayer;
         public EnemyType enemyType;
+		
+		// attack sound effects
+		public AudioClip attackFleshSound;
+    	public AudioClip attackShieldSound;
     }
 }
 

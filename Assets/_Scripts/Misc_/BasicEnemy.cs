@@ -11,6 +11,10 @@ namespace _Scripts.Misc_
         [SerializeField] private GameObject bluePotionPrefab;
         [SerializeField] private GameObject redPotionPrefab;
         [SerializeField] private ParticleSystem deathParticles;
+		[SerializeField] private GameObject attackBox;
+        [SerializeField] private AudioClip footstepSound;
+        [SerializeField] private AudioClip attackSound;
+        private AudioSource _audioSource;
         private int _currHealth;
         private bool _isDead;
         [SerializeField] private Transform groundWallCheck;
@@ -40,6 +44,7 @@ namespace _Scripts.Misc_
             _anim = GetComponent<Animator>();
             _rb = GetComponent<Rigidbody2D>();
             _collider = GetComponent<BoxCollider2D>();
+            _audioSource = GetComponent<AudioSource>();
         }
 
         private void Start()
@@ -87,6 +92,16 @@ namespace _Scripts.Misc_
             transform.localScale = characterScale;
         }
 
+		public void EnableAttackBox()
+		{
+    		attackBox.SetActive(true);
+		}
+
+		public void DisableAttackBox()
+		{
+    		attackBox.SetActive(false);
+		}
+
         public void ChangeHealth(int amount)
         {
             // Restrict the changed health value between 0 and "maxHealth"
@@ -104,7 +119,30 @@ namespace _Scripts.Misc_
                 EnemyDeath();
             }
         }
+		/*
+		public void HandleAttack(GameObject player)
+		{
+    		if (_isDead) return;
 
+    		var playerController = player.GetComponent<PlayerController>();
+    		var damageable = player.GetComponent<IDamageable>();
+
+    		if (playerController != null && playerController.isShielding)
+    		{
+        		// Shield hit
+        		_audioSource.PlayOneShot(enemyData.attackShieldSound);
+    		}
+    		else
+    		{
+        		// Flesh hit
+        		_audioSource.PlayOneShot(enemyData.attackFleshSound);
+        		if (damageable != null)
+        		{
+            		damageable.ChangeHealth(-1);
+        		}
+    		}
+		}
+		*/
         private void EnemyDeath()
         {
             _isDead = true;
@@ -132,19 +170,20 @@ namespace _Scripts.Misc_
                     break;
             }
         }
+        
+        #region Audio Functions
 
-        private void OnCollisionEnter2D(Collision2D other)
+        // Called by animation event
+        public void PlayFootstep()
         {
-            if (other.gameObject.CompareTag("Player"))
+            if (footstepSound != null)
             {
-                if (!_isDead) // Add a boolean to not damage the player when enemy is already dead
-                {
-                    // Get the IDamageable from the player and deduct their health
-                    var damageable = other.gameObject.GetComponent<IDamageable>();
-                    damageable.ChangeHealth(-1);
-                }
+                _audioSource.PlayOneShot(footstepSound);
             }
         }
+     
+
+        #endregion
 
         // private void OnDrawGizmos()
         // {
