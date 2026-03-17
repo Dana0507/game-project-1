@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5926256097809669556}
   - component: {fileID: 29206232597355477}
   - component: {fileID: 5763286822651422498}
+  - component: {fileID: 5235923892335204418}
   m_Layer: 0
   m_Name: RedPotion
   m_TagString: Untagged
@@ -142,3 +143,16 @@ CircleCollider2D:
   m_Offset: {x: -0.023434162, y: -0.035151422}
   serializedVersion: 2
   m_Radius: 0.5390668
+--- !u!114 &5235923892335204418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3989311772263277570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee60c35a1c184bfe88eca90a5ff446f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleAmount: 0.1
