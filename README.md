@@ -53,6 +53,7 @@ The player is able to perform the following in-game actions:
 - Move across each level
 - Jump over hazards and reach platforms
 - Strike enemies using the sword
+- Block incoming attacks
 - Interact with potion-based scaling effects
 - Pause and resume the game
 - Navigate menus such as:
@@ -71,20 +72,26 @@ The knight is the playable hero of the game. He is tasked with fighting through 
 
 ### Enemies
 
-**The Wizard**  
+**Velaryo the Wizard**  
 The wizard is the main antagonist and the final boss. He is the one responsible for opening the portal and spreading darkness throughout the castle and surrounding lands.
 
 **Goblins**  
 Fast and hostile creatures that appear among the wizard’s army and add variety to enemy encounters.
 
-**Skeletons**  
-Undead foes shaped by dark magic, reinforcing the game’s supernatural atmosphere.
+**Pink Brutes**
+Strong enemies with thick builds and oversized weapons, making them look tougher and more aggressive than many of the wizard’s other soldiers. Their sturdy appearance gives them the role of dangerous close range fighters that add more pressure during combat.
 
-**Armored Knights**  
-Once-honorable warriors who have fallen under corruption and now stand against the player.
+**Elder Mages**
+Aged spellcasting enemies who appear physically weak but remain threatening because of their magical power and staffs. They add a strange and eerie presence to the wizard’s forces while increasing the variety of enemy encounters in the game.
 
-**Summoned Monsters**  
-Creatures brought into battle through the wizard’s magic to intensify the challenge.
+**Wandering Swordsmen**
+Human like enemies equipped with simple clothing and long swords, giving them the appearance of skilled melee fighters. Their straightforward design brings a familiar combat style to the wizard’s army and helps make encounters feel more balanced and diverse.
+
+**Blue Champions**
+Tall enemy warriors with blue skin and large swords that make them look stronger and more advanced than regular foes. Their striking appearance gives them the feel of elite opponents and adds a greater sense of progression to the game’s enemy variety.
+
+**Red Shadows**
+Dark and threatening enemies marked by red tones and sharp blades, giving them a fierce and unsettling appearance. Their sinister presence adds a harsher type of opponent to the wizard’s forces and expands both the visual and gameplay variety of enemy encounters.
 
 ---
 
@@ -130,7 +137,7 @@ Worked on enemy functionality and balancing, including:
 
 ## Assets and References
 
-1. **Player**  
+1. **Player / Knight**  
    https://assetstore.unity.com/packages/2d/characters/hero-knight-pixel-art-165188
 
 2. **Level 1 Enemy**  
@@ -139,7 +146,7 @@ Worked on enemy functionality and balancing, including:
 3. **Level 2 Enemy**  
    https://assetstore.unity.com/packages/2d/characters/bandits-pixel-art-104130
 
-4. **Final Boss**  
+4. **Final Boss / Velaryo**  
    https://assetstore.unity.com/packages/2d/characters/evil-wizard-2-284501
 
 5. **Background**  
