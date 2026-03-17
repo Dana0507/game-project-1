@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: FastEnemyL2
   m_EditorClassIdentifier: 
   health: 4
-  damage: 2
   moveSpeed: 4
+  attackDamage: 0
+  attackCooldown: 0
   edgeDetectionDistance: 0.75
-  wallDetectionDistance: 1
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   enemyType: 1

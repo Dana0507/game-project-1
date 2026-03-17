@@ -8,20 +8,42 @@ namespace _Scripts.Misc_
     public class BasicEnemy : MonoBehaviour, IDamageable
     {
         [SerializeField] private EnemyData enemyData;
+
+		[Header("Attacking")]
+		[SerializeField] private GameObject attackBox;
+		[SerializeField] private float attackCooldown = 1.5f;
+		private float _lastAttackTime;
+		[SerializeField] private float attackRange = 1.5f;
+		private Transform _target;
+
+		[Header("Potions")]
         [SerializeField] private GameObject bluePotionPrefab;
         [SerializeField] private GameObject redPotionPrefab;
+
+		[Header("Effects")]
         [SerializeField] private ParticleSystem deathParticles;
-		[SerializeField] private GameObject attackBox;
+		
+		[Header("Audio")]
         [SerializeField] private AudioClip footstepSound;
         [SerializeField] private AudioClip attackSound;
         private AudioSource _audioSource;
+		
+		[Header("Enemy Stats")]
         private int _currHealth;
         private bool _isDead;
+		private bool _isAttacking;
         [SerializeField] private Transform groundWallCheck;
         private bool _isFacingRight;
         public EnemyType enemyType;
+		[SerializeField] private float detectionRange = 2f;
+		[SerializeField] private LayerMask playerLayer;
 
-
+		[Header("Enemy Patrol")]
+		[SerializeField] private float patrolDistance = 5f;
+		private Vector2 _startPosition;
+		private float _lastFlipTime;
+		[SerializeField] private float flipCooldown = 0.2f;
+		
         #region Components
 
         private Animator _anim;
@@ -32,8 +54,10 @@ namespace _Scripts.Misc_
 
         #region Animation Hashes
 
-        private static readonly int Hit = Animator.StringToHash("Hit");
+		private static readonly int Speed = Animator.StringToHash("Speed");
+        private static readonly int Hurt = Animator.StringToHash("Hurt");
         private static readonly int Death = Animator.StringToHash("Death");
+		private static readonly int Attack = Animator.StringToHash("Attack");
 
         #endregion
 
@@ -50,26 +74,84 @@ namespace _Scripts.Misc_
         private void Start()
         {
             _currHealth = enemyData.health;
+			_startPosition = transform.position;
         }
+		
+		private void Update()
+		{
+    		if (_isDead || _isAttacking) return;
+
+    		DetectPlayer();
+			if (_target != null)
+    		{
+        		float distance = Vector2.Distance(transform.position, _target.position);
+
+        		if (distance > attackRange)
+        		{
+            		ChasePlayer();
+        		}
+        		else
+        		{
+            		StopMoving();
+            		TryAttack();
+        		}
+    		}
+		}
 
         private void FixedUpdate()
         {
+			if (_isDead || _isAttacking || _target != null)
+    		{
+        		_rb.velocity = new Vector2(0, _rb.velocity.y);
+        		_anim.SetFloat(Speed, 0);
+        		return;
+    		}
             _rb.velocity =
                 new Vector2(_isFacingRight ? Mathf.Abs(enemyData.moveSpeed) : -Mathf.Abs(enemyData.moveSpeed),
                     _rb.velocity.y);
-
-            // Wall Detection Raycast
-            var wallDetect = Physics2D.Raycast(groundWallCheck.position, _isFacingRight ? Vector2.right : Vector2.left,
-                enemyData.wallDetectionDistance, enemyData.groundLayer);
+			
+			_anim.SetFloat(Speed, Mathf.Abs(_rb.velocity.x));
 
             // Edge Detection Raycast
             var edgeDetect = Physics2D.Raycast(groundWallCheck.position, Vector2.down,
                 enemyData.edgeDetectionDistance, enemyData.groundLayer);
 
-            if (wallDetect || !edgeDetect)
-            {
-                FlipCharacter();
-            }
+            if (!edgeDetect && Time.time - _lastFlipTime > flipCooldown)
+			{
+    			FlipCharacter();
+    		_lastFlipTime = Time.time;
+			}
+			
+			// Patrol distance check
+    		float distanceFromStart = transform.position.x - _startPosition.x;
+
+    		if (_isFacingRight && distanceFromStart >= patrolDistance && Time.time - _lastFlipTime > flipCooldown)
+			{
+    			FlipCharacter();
+    			_lastFlipTime = Time.time;
+			}
+			else if (!_isFacingRight && distanceFromStart <= -patrolDistance && Time.time - _lastFlipTime > flipCooldown)
+			{
+    			FlipCharacter();
+    			_lastFlipTime = Time.time;
+			}
+
+			if (Mathf.Abs(_rb.velocity.x) > 0.1f && !_isDead && !_isAttacking)
+			{
+    			if (!_audioSource.isPlaying)
+    				{
+        				_audioSource.clip = footstepSound;
+        				_audioSource.loop = true;
+        				_audioSource.Play();
+    				}
+			}
+			else
+			{
+    			if (_audioSource.isPlaying && _audioSource.clip == footstepSound)
+    			{
+        			_audioSource.Stop();
+    			}
+			}
         }
 
         #endregion
@@ -92,29 +174,63 @@ namespace _Scripts.Misc_
             transform.localScale = characterScale;
         }
 
+		public void TriggerAttack()
+        {
+            if (_isDead || _isAttacking) return;
+
+            if (Time.time - _lastAttackTime < attackCooldown)
+                return;
+
+            _lastAttackTime = Time.time;
+
+            _isAttacking = true;
+            _rb.velocity = Vector2.zero;
+
+            _anim.SetTrigger(Attack);
+        }
+
+		// Called by animation event (attack hurt frame)
+        public void DealDamage(GameObject player)
+        {
+            var damageable = player.GetComponent<IDamageable>();
+            if (damageable != null)
+            {
+                damageable.ChangeHealth(-enemyData.attackDamage);
+            }
+        }
+
+        // Called at end of attack animation
+        public void EndAttack()
+        {
+            _isAttacking = false;
+        }
+		
 		public void EnableAttackBox()
 		{
+    		Debug.Log("AttackBox ENABLED");
     		attackBox.SetActive(true);
 		}
 
 		public void DisableAttackBox()
 		{
+    		Debug.Log("AttackBox DISABLED");
     		attackBox.SetActive(false);
 		}
+		
 
         public void ChangeHealth(int amount)
         {
             // Restrict the changed health value between 0 and "maxHealth"
             _currHealth = Mathf.Clamp(_currHealth + amount, 0, enemyData.health);
 
-            // If we're decreasing health and enemy health still hasn't reached 0, play the hit animation
+            // If we're decreasing health and enemy health still hasn't reached 0, play the hurt animation
             if (amount <= 0 && _currHealth != 0)
             {
-                _anim.SetTrigger(Hit);
+                _anim.SetTrigger(Hurt);
             }
 
             // If enemy's health reached 0, trigger the death animation
-            if (_currHealth == 0)
+            if (_currHealth <= 0)
             {
                 EnemyDeath();
             }
@@ -122,12 +238,20 @@ namespace _Scripts.Misc_
 		/*
 		public void HandleAttack(GameObject player)
 		{
-    		if (_isDead) return;
+    		if (_isDead || _isAttacking) return;
 
-    		var playerController = player.GetComponent<PlayerController>();
+			if (Time.time - _lastAttackTime < attackCooldown)
+        		return;
+			_lastAttackTime = Time.time;
+
+    		// var playerController = player.GetComponent<HeroKnight_AnimController>();
     		var damageable = player.GetComponent<IDamageable>();
-
-    		if (playerController != null && playerController.isShielding)
+			if (damageable != null)
+        	{
+            		damageable.ChangeHealth(-enemyData.attackDamage);
+        	}
+			
+    		if (playerController != null && playerController.Block)
     		{
         		// Shield hit
         		_audioSource.PlayOneShot(enemyData.attackShieldSound);
@@ -138,11 +262,58 @@ namespace _Scripts.Misc_
         		_audioSource.PlayOneShot(enemyData.attackFleshSound);
         		if (damageable != null)
         		{
-            		damageable.ChangeHealth(-1);
+            		damageable.ChangeHealth(-enemyData.attackDamage);
         		}
     		}
+			
+			
 		}
 		*/
+		private void DetectPlayer()
+		{
+			if (_target != null) return;
+    		Collider2D player = Physics2D.OverlapCircle(transform.position, detectionRange, playerLayer);
+
+    		if (player != null)
+    		{
+        		Debug.Log("Player detected!");
+        		_target = player.transform;
+    		}
+		}
+		
+		private void ChasePlayer()
+		{
+    		if (_isAttacking) return;
+
+    		float direction = _target.position.x > transform.position.x ? 1 : -1;
+
+    		_rb.velocity = new Vector2(direction * enemyData.moveSpeed, _rb.velocity.y);
+    		_anim.SetFloat(Speed, Mathf.Abs(_rb.velocity.x));
+
+    		// Flip toward player
+    		if ((_isFacingRight && direction < 0) || (!_isFacingRight && direction > 0))
+    		{
+        		FlipCharacter();
+    		}
+		}
+	
+		private void StopMoving()
+		{
+    		_rb.velocity = new Vector2(0, _rb.velocity.y);
+    		_anim.SetFloat(Speed, 0);
+		}
+
+		private void TryAttack()
+		{
+    		if (_isAttacking) return;
+
+    		if (Time.time - _lastAttackTime >= attackCooldown)
+    		{
+        		Debug.Log("In range → ATTACK");
+        		TriggerAttack();
+    		}
+		}
+
         private void EnemyDeath()
         {
             _isDead = true;
@@ -157,6 +328,7 @@ namespace _Scripts.Misc_
             Destroy(gameObject, 1f); // enemy's body is destroyed
         }
         
+		#region Potions
         private void SpawnPotion()
         {
             switch(enemyData.enemyType)
@@ -170,26 +342,51 @@ namespace _Scripts.Misc_
                     break;
             }
         }
+		#endregion
         
         #region Audio Functions
 
-        // Called by animation event
-        public void PlayFootstep()
+        private void HandleWalkingSound()
         {
-            if (footstepSound != null)
+            if (Mathf.Abs(_rb.velocity.x) > 0.1f)
             {
-                _audioSource.PlayOneShot(footstepSound);
+                if (!_audioSource.isPlaying)
+                {
+                    _audioSource.clip = footstepSound;
+                    _audioSource.loop = true;
+                    _audioSource.Play();
+                }
+            }
+            else
+            {
+                StopWalkingSound();
+            }
+        }
+
+        private void StopWalkingSound()
+        {
+            if (_audioSource.isPlaying && _audioSource.clip == footstepSound)
+            {
+                _audioSource.Stop();
+            }
+        }
+		public void PlayAttackSound()
+        {
+            if (attackSound != null)
+            {
+                _audioSource.PlayOneShot(attackSound);
             }
         }
      
 
         #endregion
 
-        // private void OnDrawGizmos()
-        // {
-        //     Gizmos.color = Color.white;
-        //     Gizmos.DrawRay(groundWallCheck.position, Vector2.down * enemyData.edgeDetectionDistance);
-        //     Gizmos.DrawRay(groundWallCheck.position, _isFacingRight? Vector2.right : Vector2.left * enemyData.wallDetectionDistance);
-        // }
+         private void OnDrawGizmos()
+         {
+             Gizmos.color = Color.white;
+             Gizmos.DrawRay(groundWallCheck.position, Vector2.down * enemyData.edgeDetectionDistance);
+			 Gizmos.color = Color.yellow;
+    		 Gizmos.DrawWireSphere(transform.position, detectionRange);
+         }
     }
 }

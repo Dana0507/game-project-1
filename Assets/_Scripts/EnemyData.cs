@@ -13,16 +13,16 @@ namespace _Scripts
     public class EnemyData : ScriptableObject
     {
         public int health;
-        public int damage;
         public float moveSpeed;
+		public int attackDamage;
+		public float attackCooldown;
         public float edgeDetectionDistance;
-        public float wallDetectionDistance;
         public LayerMask groundLayer;
         public EnemyType enemyType;
 		
 		// attack sound effects
-		public AudioClip attackFleshSound;
-    	public AudioClip attackShieldSound;
+		// public AudioClip attackFleshSound;
+    	// public AudioClip attackShieldSound;
     }
 }
 
