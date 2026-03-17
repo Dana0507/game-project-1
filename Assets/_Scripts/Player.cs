@@ -38,7 +38,7 @@ namespace _Scripts
         #region Animation Hashes
     
         private static readonly int IsMoving = Animator.StringToHash("isMoving");
-        private static readonly int IsAttacking = Animator.StringToHash("isAttacking");
+        private static readonly int IsAttacking = Animator.StringToHash("Attack1");
         private static readonly int Hit = Animator.StringToHash("Hit");
 
         #endregion
@@ -83,6 +83,8 @@ namespace _Scripts
         public void FootstepSFX()
         {
             if (!isGrounded) return;
+            if (footstepsSfx == null || footstepsSfx.Count == 0) return;
+
             var clip = footstepsSfx[Random.Range(0, footstepsSfx.Count)];
             _audioSource.PlayOneShot(clip);
         }
