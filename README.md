@@ -67,31 +67,35 @@ The player is able to perform the following in-game actions:
 ## Characters
 
 ### Protagonist
-**The Knight**  
-The knight is the playable hero of the game. He is tasked with fighting through the wizard’s forces, growing stronger through battle, and saving the kingdom from corruption.
+
+The Knight:
+The knight is the central playable character and the protagonist of the game. His mission is to save the kingdom by battling the enemies unleashed by the wizard and ultimately destroying the source of the corruption.
 
 ### Enemies
 
-**Velaryo the Wizard**  
-The wizard is the main antagonist and the final boss. He is the one responsible for opening the portal and spreading darkness throughout the castle and surrounding lands.
+#### Level 1 Enemies
 
-**Goblins**  
-Fast and hostile creatures that appear among the wizard’s army and add variety to enemy encounters.
+Orc Shaman:
+A staff-carrying enemy identified by white hair and a tribal appearance. This character is best suited to a support or ranged spellcasting role, bringing additional variety to combat through indirect magical attacks.
 
-**Pink Brutes**
-Strong enemies with thick builds and oversized weapons, making them look tougher and more aggressive than many of the wizard’s other soldiers. Their sturdy appearance gives them the role of dangerous close range fighters that add more pressure during combat.
+Orc Warrior:
+A close-range enemy armed with a battle axe and defined by a strong, intimidating build. This unit serves as a frontline fighter and represents the primary melee threat among the Level 1 enemies.
 
-**Elder Mages**
-Aged spellcasting enemies who appear physically weak but remain threatening because of their magical power and staffs. They add a strange and eerie presence to the wizard’s forces while increasing the variety of enemy encounters in the game.
+Orc Berserker:
+An aggressive melee enemy recognized by dual cleavers and a savage visual design. This unit is suited to intense close-quarters combat and adds a more dangerous and chaotic presence to the Level 1 enemy group.
 
-**Wandering Swordsmen**
-Human like enemies equipped with simple clothing and long swords, giving them the appearance of skilled melee fighters. Their straightforward design brings a familiar combat style to the wizard’s army and helps make encounters feel more balanced and diverse.
+#### Level 2 Enemies
 
-**Blue Champions**
-Tall enemy warriors with blue skin and large swords that make them look stronger and more advanced than regular foes. Their striking appearance gives them the feel of elite opponents and adds a greater sense of progression to the game’s enemy variety.
+Light Bandit:
+A lightly armored humanoid enemy with a sword-based fighting style and a fast, agile appearance. This character is designed to function as a quick melee opponent that relies on speed and mobility rather than endurance.
 
-**Red Shadows**
-Dark and threatening enemies marked by red tones and sharp blades, giving them a fierce and unsettling appearance. Their sinister presence adds a harsher type of opponent to the wizard’s forces and expands both the visual and gameplay variety of enemy encounters.
+Heavy Bandit:
+A sturdier and more protected sword-wielding enemy with a heavier silhouette and a more armored design. This unit is suited to the role of a tougher melee adversary, capable of withstanding more damage while maintaining steady close-range pressure.
+
+#### Main Villain and Final Boss
+
+Velarayo:
+Velarayo is the main villain and final boss of the game. As the wizard responsible for opening a portal to another realm, he is the central cause of the corruption that has spread throughout the kingdom. As the source of the conflict, he stands as the knight’s ultimate opponent and the final challenge of the game.
 
 ---
 
@@ -137,7 +141,7 @@ Worked on enemy functionality and balancing, including:
 
 ## Assets and References
 
-1. **Player / Knight**  
+1. **Player (Knight)**  
    https://assetstore.unity.com/packages/2d/characters/hero-knight-pixel-art-165188
 
 2. **Level 1 Enemy**  
@@ -146,7 +150,7 @@ Worked on enemy functionality and balancing, including:
 3. **Level 2 Enemy**  
    https://assetstore.unity.com/packages/2d/characters/bandits-pixel-art-104130
 
-4. **Final Boss / Velaryo**  
+4. **Final Boss (Velarayo)**  
    https://assetstore.unity.com/packages/2d/characters/evil-wizard-2-284501
 
 5. **Background**  
